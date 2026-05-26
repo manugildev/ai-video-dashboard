@@ -1,0 +1,75 @@
+/* Increase bottom padding to prevent toasts from overlapping with promptBox */
+:global(.tlui-toast__viewport) {
+	padding: 0px var(--tl-space-3) calc(64px + 40px) 0px !important;
+}
+
+.container {
+	position: fixed;
+	inset: 0;
+}
+
+.promptBox {
+	position: absolute;
+	right: var(--tl-space-3);
+	bottom: var(--tl-space-3);
+}
+
+.promptBox[data-debug='true'] {
+	bottom: calc(var(--tl-space-3) + 40px + 1px);
+}
+
+.promptBox > * {
+	pointer-events: auto;
+}
+
+@media (max-width: 1060px) {
+	.promptBox {
+		right: var(--tl-space-3);
+		bottom: auto;
+		top: var(--tl-space-3);
+		z-index: 9999;
+	}
+}
+
+.form {
+	display: flex;
+	gap: var(--tl-space-2);
+	padding: var(--tl-space-2);
+	padding-left: var(--tl-space-4);
+	border-radius: var(--tl-radius-4);
+	background: var(--tl-color-panel);
+	box-shadow: var(--tl-shadow-2);
+	pointer-events: all;
+	min-width: 300px;
+}
+
+.editor {
+	flex: 1;
+	min-height: 48px;
+	max-height: 96px;
+	overflow-y: auto;
+}
+
+.textarea {
+	flex: 1;
+	resize: none;
+	font-family: inherit;
+	border: 0;
+	margin: var(--tl-space-3);
+	margin-left: 0;
+	background-color: transparent;
+	color: var(--tl-color-text);
+	max-height: 96px;
+	overflow-y: auto;
+}
+
+.sendButton {
+	background: var(--tl-color-muted-1) !important;
+	border-radius: var(--tl-radius-3) !important;
+	align-self: flex-end;
+}
+
+.sendButton:not(:disabled) {
+	background: var(--tl-color-selected) !important;
+	color: var(--tl-color-selected-contrast) !important;
+}
