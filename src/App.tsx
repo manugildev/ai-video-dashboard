@@ -1,5 +1,6 @@
 import { Tldraw, track, TldrawProps } from 'tldraw'
 import { PromptBoxComponent } from './components/PromptBox'
+import { CustomImageToolbar, CustomVideoToolbar } from './components/CustomMediaToolbar'
 import styles from './styles/App.module.css'
 
 const assetUrls: TldrawProps['assetUrls'] = {
@@ -21,6 +22,8 @@ function App() {
                 components={{
                     InFrontOfTheCanvas: Canvas,
                     StylePanel: null,
+                    ImageToolbar: CustomImageToolbar,
+                    VideoToolbar: CustomVideoToolbar,
                 }}
             />
         </div>
