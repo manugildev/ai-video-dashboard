@@ -67,9 +67,11 @@
 	background: var(--tl-color-muted-1) !important;
 	border-radius: var(--tl-radius-3) !important;
 	align-self: flex-end;
+	padding: 0 !important;
 }
 
 .sendButton:not(:disabled) {
+	padding: 0 !important;
 	background: var(--tl-color-selected) !important;
 	color: var(--tl-color-selected-contrast) !important;
 }

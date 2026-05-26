@@ -6,12 +6,29 @@ export const PromptBoxComponent = track(() => {
     const editor = useEditor()
     const [input, setInput] = useState('')
     const [isSubmitting, setIsSubmitting] = useState(false)
+    const selectedShapes = editor.getSelectedShapes()
 
     const handleSubmit = async () => {
         if (!input.trim()) return
         setIsSubmitting(true)
         try {
             console.log('Prompt:', input)
+
+            for (const shape of selectedShapes) {
+                if ((shape?.type === 'image' || shape?.type === 'video') && shape.props.assetId) {
+                    const asset = editor.getAsset(shape.props.assetId)
+
+                    if (asset) {
+                        const assetBlobUrl = await editor.resolveAssetUrl(asset.id, {})
+                        console.log('Resolved asset URL:', assetBlobUrl)
+                        if (assetBlobUrl) {
+                            const response = await fetch(assetBlobUrl)
+                            const blob = await response.blob()
+                            console.log('Blob:', blob)
+                        }
+                    }
+                }
+            }
         } finally {
             setIsSubmitting(false)
             setInput('')
